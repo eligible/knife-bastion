@@ -1,6 +1,6 @@
 # knife-bastion
 
-This plugins allows Knife to access Chef server over a secure SSH connection,
+This plugin allows Knife to access Chef server over a secure SSH connection,
 without exposing Chef server port to your VPN network.
 
 ## Installation
@@ -50,6 +50,17 @@ Now, your workflow will look like this:
    and turn off the proxy. If you forget to do this, it will die automatically
    after 10 minutes.
 
+Sometimes when you work on a big change, default timeout of 10 minutes is too short.
+You can increase timeout with `--timeout` flag:
+
+```
+knife bastion start --timeout 1800
+```
+
+Maximum timeout is 3600 (1 hour) for security reasons. You can re-establish bastion
+connection by executing `knife bastion start` (if the connection is currently active,
+it will be forcibly closed.)
+
 ### Bastion troubleshooting
 
 If something is not right, you need to ensure you have access to bastion box.
@@ -63,12 +74,12 @@ Check current bastion connection status (it will tell you if there is anything
 wrong with your box):
 
 ```
-knife eligible bastion status
+knife bastion status
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/knife-bastion.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kpumuk/knife-bastion.
 
 ## License
 
