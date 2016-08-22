@@ -21,18 +21,24 @@ Or install it yourself as:
 
 ## Usage
 
-Configure your bastion server in `.chef/knife.rb`:
+Configure your bastion server in `.chef/knife.rb` (at the bottom):
 
 ```ruby
+# ...
+# your knife configurations goes here
+# ...
+
 # Bastion host SSH settings
 knife[:bastion_host] = "bastion.mycorp.net"
 knife[:bastion_user] = ENV["MYCORP_USER"] || ENV["CHEF_USER"] || ENV["USER"]
 
 # If you have multiple networks, that require different MFA tokens, specify
-# network name here (only used to warn user to specify correct token)
+# each network name here. (This configuration is referenced to clarify the
+# token a user should employ.)
 # knife[:bastion_network] = "mynet"
 
-# By default, proxy server is created on port 4443. You can change it here:
+# By default, the proxy server is created on port 4443. You may configure the
+# local bastion port here:
 # knife[:bastion_local_port] = 4443
 
 require "knife-bastion/activate"
@@ -79,7 +85,13 @@ knife bastion status
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kpumuk/knife-bastion.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/eligible/knife-bastion.
 
 ## License
 
