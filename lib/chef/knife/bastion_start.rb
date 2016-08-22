@@ -66,7 +66,7 @@ class Chef
           # prevent reading from stdin
           "-n",
           # application-level port forwarding (SOCKS proxy)
-          "-D", @local_port,
+          "-D", "127.0.0.1:#{@local_port}",
           # wait for all remote port forwards to be successfully established
           "-o", "ExitOnForwardFailure=yes",
           # Disable sharing of multiple connections
