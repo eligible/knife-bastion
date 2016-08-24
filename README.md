@@ -1,5 +1,8 @@
 # knife-bastion
 
+[![Code Climate](https://codeclimate.com/github/eligible/knife-bastion/badges/gpa.svg)](https://codeclimate.com/github/eligible/knife-bastion)
+[![Gem Version](https://badge.fury.io/rb/knife-bastion.svg)](https://badge.fury.io/rb/knife-bastion)
+
 This plugin allows Knife to access Chef server over a secure SSH connection,
 without exposing Chef server port to your VPN network.
 
