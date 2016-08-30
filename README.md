@@ -86,6 +86,27 @@ wrong with your box):
 knife bastion status
 ```
 
+### Using knife-bastion Outside of Chef
+
+This gem can be used to connect to any server utilizing generic
+proxy client. The bastion should be started the same way as it is
+described above.
+
+Example:
+
+```ruby
+require 'knife-bastion/client_proxy'
+require 'rest_client'
+
+# initialize RestClient::Resource object and wrap it into a bastion proxy
+api = KnifeBastion::ClientProxy.new(
+  RestClient::Resource.new('https://domain.com/api/v1')
+)
+
+# use api the same way as it would be used as a RestClient::Resource
+api['posts/1/comments'].post 'Good article.', content_type: 'text/plain'
+```
+
 ## Contributing
 
 1. Fork it
