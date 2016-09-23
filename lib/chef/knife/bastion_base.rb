@@ -26,7 +26,7 @@ class Chef
         proxy_pid = pid_result.stdout.chomp
 
         # Verify tunnel destination
-        bastion_ip_addr = Resolv.getaddress(@bastion_host)
+        bastion_ip_addr = Socket.getaddrinfo(@bastion_host, nil, :INET, :STREAM, Socket::IPPROTO_TCP).first[3]
         dest_result = shell_out("lsof -an -p #{proxy_pid} -i4@#{bastion_ip_addr}:ssh")
         unless dest_result.status.success?
           ui.fatal "There is a process with PID #{proxy_pid} listening on port #{local_port}, but it does not look like a tunnel"
