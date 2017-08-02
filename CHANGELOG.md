@@ -1,3 +1,8 @@
+## 1.2.0 (Development)
+
+Features:
+  - Berkshelf now supports bastion (`berks upload`)
+
 ## 1.1.1 (September 27, 2016)
 
 Bugfixes:
