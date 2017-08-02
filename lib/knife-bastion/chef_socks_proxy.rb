@@ -12,12 +12,7 @@ Chef::HTTP.class_eval do
     client = http_client_without_bastion(*args)
     options = {
       local_port: ::Chef::Config[:knife][:bastion_local_port],
-      error_handler: -> (_) {
-        puts ::HighLine.color("WARNING:", [:bold, :red]) + " Failed to contact Chef server!"
-        puts "You might need to start bastion connection with #{::HighLine.color("knife bastion start", [:bold, :magenta])} to access Chef."
-        puts
-        raise
-      }
+      server_type: 'Chef',
     }
     KnifeBastion::ClientProxy.new(client, options)
   end

@@ -15,7 +15,8 @@ module KnifeBastion
       ::Errno::ECONNREFUSED,
       ::Timeout::Error,
       ::OpenSSL::SSL::SSLError,
-    ].freeze
+      defined?(::Berkshelf::ChefConnectionError) ? ::Berkshelf::ChefConnectionError : nil,
+    ].compact.freeze
 
     # Initializes an instance of the generic client proxy which sends all the
     #   network traffic through the SOCKS proxy.
@@ -31,9 +32,14 @@ module KnifeBastion
       @client = client
 
       @local_port = options[:local_port] || 4443
+
+      server_type = ::HighLine.color("#{options[:server_type]} ", [:bold, :cyan]) if options[:server_type]
       @network_errors_handler = options[:error_handler] || -> (_) {
-        ::Kernel.puts ::HighLine.color("WARNING:", [:bold, :red]) + " Failed to contact server!"
+        ::Kernel.puts
+        ::Kernel.puts '-' * 80
+        ::Kernel.puts ::HighLine.color("WARNING:", [:bold, :red]) + " Failed to contact #{server_type}server!"
         ::Kernel.puts "You might need to start bastion connection with #{::HighLine.color("knife bastion start", [:bold, :magenta])} to access server."
+        ::Kernel.puts '-' * 80
         ::Kernel.puts
         ::Kernel.raise
       }
