@@ -1,7 +1,7 @@
 require_relative 'base_socks_proxy'
 
-# Override `http_client` method in `Chef::HTTP` to return proxy object instead
-# of normal client object.
+# Override `ridley_connection` method in `Berkshelf` to enable Socks proxy
+# for the connection.
 Berkshelf.module_eval do
   class << self
     alias_method :ridley_connection_without_bastion, :ridley_connection
