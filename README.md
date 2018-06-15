@@ -8,7 +8,13 @@ without exposing Chef server port to your VPN network.
 
 ## Installation
 
-Add this line to your Chef repository's Gemfile:
+If you're using ChefDK, install `knife-bastion` into the Chef omnibus:
+
+```bash
+chef gem install knife-bastion
+```
+
+If you're using rubygems to manage your Chef repository dependencies, add this line to your Chef repository's Gemfile:
 
 ```ruby
 gem 'knife-bastion'
